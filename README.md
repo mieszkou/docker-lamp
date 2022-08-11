@@ -1,6 +1,6 @@
 # docker-lamp
 
-Środowisko LAMP
+Apache + PHP + MariaDB
 
 Przygotowane w oparciu o:
 
