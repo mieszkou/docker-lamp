@@ -1,4 +1,4 @@
-<a href="http://127.0.0.1:<?= $_SERVER['SERVER_PORT'] + 1 ?>">phpMyAdmin</a> |
+<a href="http://127.0.0.1:1<?= $_SERVER['SERVER_PORT'] ?>">phpMyAdmin</a> |
 <a href="/?info=1">phpinfo()</a>
 <hr>
 <?php
