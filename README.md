@@ -13,7 +13,7 @@ Przygotowane w oparciu o:
 
 - Konfiguracja w pliki `.env`
 - Kod w folderze `www`
-- W oparciu o numer portu applikacji `APP_PORT=5000` są generowane porty (przekierowania) dla phpMyAdmin (`APP_DB_ADMIN_PORT=1500`) i MariaDB (`DB_PORT=35000`). Dlatego port aplikacji nie może przekraczać 9999.
+- W oparciu o numer portu applikacji `APP_PORT=5000` są generowane porty (przekierowania) dla phpMyAdmin (`APP_DB_ADMIN_PORT=15000`) i MariaDB (`DB_PORT=35000`). Dlatego port aplikacji nie może przekraczać 9999.
 
 ## Uruchamianie
 
