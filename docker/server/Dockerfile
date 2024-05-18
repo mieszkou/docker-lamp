@@ -1,4 +1,4 @@
-FROM php:8.0-apache
+FROM php:8.3-apache
 
 RUN a2enmod rewrite
 
@@ -11,3 +11,4 @@ RUN install-php-extensions gd pdo_mysql bcmath zip intl opcache
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
 COPY --from=composer:2.0 /usr/bin/composer /usr/local/bin/composer
+COPY --chown=www-data:www-data ./www /var/www/html

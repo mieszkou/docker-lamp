@@ -16,9 +16,14 @@ services:
     environment:
       - "DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASS}@db_server:3306/${MYSQL_DB}?serverVersion=10.5"
     volumes:
-      - ./www:/var/www/html
+      - ${APP_NAME}-www:/var/www/html
       - ./docker/server/apache/sites-enabled:/etc/apache2/sites-enabled
       - ./docker/server/php/php.ini:/usr/local/etc/php/conf.d/extra-php-config.ini
+    develop:
+      watch:
+        - action: sync
+          path: ./www
+          target: /var/www/html
     depends_on:
       db_server:
         condition: service_healthy
@@ -38,7 +43,7 @@ services:
       MYSQL_PASSWORD: "${MYSQL_PASS}"
       MYSQL_DATABASE: "${MYSQL_DB}"
     volumes:
-      - ./docker/db/db_data:/var/lib/mysql
+      - ${APP_NAME}-db_data:/var/lib/mysql
       - ./docker/db/mariadb/my.cnf:/etc/mysql/conf.d/docker.cnf
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
@@ -58,11 +63,9 @@ services:
     depends_on:
       db_server:
         condition: service_healthy
-    volumes:
-      - db_admin_data:/var/www/html
     networks:
       - internal
 
 volumes:
-  db_data:
-  db_admin_data:
+  ${APP_NAME}-www
+  ${APP_NAME}-db_data:
