@@ -16,7 +16,7 @@ services:
     environment:
       - "DATABASE_URL=mysql://${MYSQL_USER}:${MYSQL_PASS}@db_server:3306/${MYSQL_DB}?serverVersion=10.5"
     volumes:
-      - ${APP_NAME}-www:/var/www/html
+      - www:/var/www/html
       - ./docker/server/apache/sites-enabled:/etc/apache2/sites-enabled
       - ./docker/server/php/php.ini:/usr/local/etc/php/conf.d/extra-php-config.ini
     develop:
@@ -43,7 +43,7 @@ services:
       MYSQL_PASSWORD: "${MYSQL_PASS}"
       MYSQL_DATABASE: "${MYSQL_DB}"
     volumes:
-      - ${APP_NAME}-db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
       - ./docker/db/mariadb/my.cnf:/etc/mysql/conf.d/docker.cnf
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD
@@ -67,5 +67,5 @@ services:
       - internal
 
 volumes:
-  ${APP_NAME}-www
-  ${APP_NAME}-db_data:
+  www:
+  db_data:
