@@ -1,6 +1,6 @@
 # docker-lamp
 
-Apache + PHP + MariaDB
+Apache + PHP + MariaDB + MSSQL
 
 Przygotowane w oparciu o:
 
@@ -17,7 +17,30 @@ Przygotowane w oparciu o:
 
 ## Uruchamianie
 
-```
+```bash
 docker compose build
 docker compose watch
 ```
+
+lub
+
+```bash
+docker compose build & docker compose watch
+```
+
+
+## Dostęp do danych:
+
+Katalog z `volumes` Docker-a (to można wgrać plik bac/bak)
+```
+\\wsl.localhost\docker-desktop-data\data\docker\volumes\
+```
+
+Odtworzenie backupu MSSQL (po wgraniu wcześniej do folderu backup z volumenie mssql)
+
+```sql
+USE [master]
+RESTORE DATABASE [pcmarket] FROM  DISK = N'/var/opt/mssql/backup/pcmarket.bak' WITH REPLACE, FILE = 1,  MOVE N'pcmarket' TO N'/var/opt/mssql/data/pcmarket.mdf', MOVE N'pcmarket_log' TO N'/var/opt/mssql/data/pcmarket_log.ldf',  NOUNLOAD,  STATS = 5
+```
+
+Dla baz PC-Market Insoftu należy, po odtworzeniu backupu, przeprowadzić serializację.
