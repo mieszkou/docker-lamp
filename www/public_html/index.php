@@ -32,18 +32,11 @@
     // check the MySQL connection status
     $conn = new mysqli($host, $user, $pass);
     if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
+      echo ("Connection failed: " . $conn->connect_error);
     } else {
       echo "Connected to MySQL server successfully!";
     }
 
-    echo ("<hr>");
-
-    print_r("<h2>PHP " . phpversion() . "</h2><code>");
-
-    echo (print_r(get_loaded_extensions(), true));
-
-    echo ("</code><hr>");
 ?>
 
     <hr>
@@ -63,7 +56,7 @@
       $host = getenv('MSSQL_HOST');
       $port = getenv('MSSQL_PORT');
 
-      $connection = sqlsrv_connect("${host},${port}", [
+      $connection = sqlsrv_connect("{$host},{$port}", [
         'UID' => getenv('MSSQL_USERNAME'),
         'PWD' => getenv('MSSQL_PASSWORD'),
         'Database' => getenv('MSSQL_DATABASE'),
@@ -95,7 +88,7 @@
       $password = getenv('MSSQL_PASSWORD');
 
       try {
-        $connection = new PDO("sqlsrv:server=${host},${port};Database=${database};ConnectionPooling=0", $username, $password, [
+        $connection = new PDO("sqlsrv:server={$host},{$port};Database={$database};ConnectionPooling=0", $username, $password, [
           PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ]);
 
@@ -139,18 +132,10 @@
     var_dump($errors);
 
 
-
-
-
     echo ("</pre><hr>");
-
     print_r("<h2>PHP " . phpversion() . "</h2><code>");
-
     echo (print_r(get_loaded_extensions(), true));
-
     echo ("</code><hr>");
-
-
 
     if (isset($_GET['info'])) {
       phpinfo();

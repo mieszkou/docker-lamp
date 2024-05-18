@@ -22,8 +22,8 @@ RUN apt-get update -y
 RUN apt-get install -y --no-install-recommends msodbcsql17 
 RUN apt-get install -y unixodbc-dev
 
-RUN pecl install sqlsrv-5.10.1
-RUN pecl install pdo_sqlsrv-5.10.1
+RUN pecl install sqlsrv-5.12.0
+RUN pecl install pdo_sqlsrv-5.12.0
 RUN docker-php-ext-enable sqlsrv
 
 COPY --chown=www-data:www-data ./www /var/www/html
