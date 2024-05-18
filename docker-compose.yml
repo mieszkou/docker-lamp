@@ -52,6 +52,21 @@ services:
     networks:
       - internal
 
+  mssql-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: "${APP_NAME}-mssql"
+    hostname: "${APP_NAME}-mssql"
+
+    ports:
+      - ${MSSQL_PORT}:1433
+    volumes:
+      - mssql_data:/var/opt/mssql
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${MSSQL_SA_PASS}
+    networks:
+      - internal
+
   db_admin:
     image: phpmyadmin/phpmyadmin:5
     container_name: "${APP_NAME}-myadmin"
@@ -69,3 +84,4 @@ services:
 volumes:
   www:
   db_data:
+  mssql_data:
