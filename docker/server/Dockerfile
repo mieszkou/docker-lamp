@@ -12,6 +12,8 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
 COPY --from=composer:2.0 /usr/bin/composer /usr/local/bin/composer
 
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
 ENV ACCEPT_EULA="Y"
 
 RUN apt-get update && \

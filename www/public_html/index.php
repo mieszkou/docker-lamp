@@ -11,10 +11,12 @@
 </head>
 
 <body>
+
   <div class="container my-5">
     <h1>Hura, działa ;)</h1>
     <a href="http://127.0.0.1:1<?= $_SERVER['SERVER_PORT'] ?>">phpMyAdmin</a> |
-    <a href="/?info=1">phpinfo()</a>
+    <a href="/?info=1">phpinfo();</a>
+    <a href="/?info=2">xdebug_info();</a>
     <hr>
     <h1>MySQL test</h1>
     <?php
@@ -137,8 +139,10 @@
     echo (print_r(get_loaded_extensions(), true));
     echo ("</code><hr>");
 
-    if (isset($_GET['info'])) {
+    if (isset($_GET['info']) && $_GET['info'] == 1) {
       phpinfo();
+    } else if (isset($_GET['info']) && $_GET['info'] == 2) {
+      xdebug_info();
     }
 
     ?>

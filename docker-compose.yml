@@ -19,6 +19,8 @@ services:
       - www:/var/www/html
       - ./docker/server/apache/sites-enabled:/etc/apache2/sites-enabled
       - ./docker/server/php/php.ini:/usr/local/etc/php/conf.d/extra-php-config.ini
+      - ./docker/server/php/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./docker/server/php/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
     develop:
       watch:
         - action: sync

@@ -1,13 +1,9 @@
 # docker-lamp
 
-Apache + PHP + MariaDB + MSSQL
-
-Przygotowane w oparciu o:
-
-- https://www.bornfight.com/blog/blog-lamp-docker-setup-with-php-8-and-mariadb-for-symfony-projects/
-- https://mariadb.com/kb/en/setting-up-a-lamp-stack-with-docker-compose/
-- https://www.section.io/engineering-education/dockerized-php-apache-and-mysql-container-development-environment/
-- moje poprawki
+- Apache
+- PHP + XDebug
+- MariaDB
+- MSSQL
 
 ## Założenia
 
@@ -27,6 +23,28 @@ lub
 ```bash
 docker compose build & docker compose watch
 ```
+
+## XDebug
+
+W pliku launch.json trzeba dodać mapowanie ścieżek między serwerem a edytorem np:
+
+```json
+"configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}/www",
+                "/app": "${workspaceFolder}/app"
+              },
+        
+        },
+        (...)
+]
+```
+
 
 
 ## Dostęp do danych:
